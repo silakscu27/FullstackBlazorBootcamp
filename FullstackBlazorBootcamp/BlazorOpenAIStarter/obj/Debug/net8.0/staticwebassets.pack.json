@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\obj\\Debug\\net8.0\\compressed\\azy0be0shr.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorOpenAIStarter.styles.css",
+      "PackagePath": "staticwebassets\\BlazorOpenAIStarter.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\BlazorOpenAIStarter\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorOpenAIStarter.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BlazorOpenAIStarter.props",
+      "PackagePath": "build\\BlazorOpenAIStarter.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BlazorOpenAIStarter.props",
+      "PackagePath": "buildMultiTargeting\\BlazorOpenAIStarter.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BlazorOpenAIStarter.props",
+      "PackagePath": "buildTransitive\\BlazorOpenAIStarter.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

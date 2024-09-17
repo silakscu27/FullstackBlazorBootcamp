@@ -1,0 +1,86 @@
+﻿@page "/chatgpt"
+
+@using OpenAI.Interfaces
+@using OpenAI.ObjectModels
+@using OpenAI.ObjectModels.RequestModels
+
+@inject IOpenAIService OpenAiService
+
+
+<div class="container mx-auto p-4 max-w-3xl">
+    <div class="card bg-gray-800 shadow-xl mb-8 border border-green-500/30">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-blue-400">Sorunuzu Girin</h2>
+            <textarea @bind=@prompt class="textarea bg-gray-700 border-green-500/50 text-white w-full mb-4 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500" placeholder="Sorunuzu buraya yazın..."></textarea>
+            <div class="card-actions justify-end">
+                <button class="btn bg-gradient-to-r from-green-600 to-blue-600 text-white btn-block transition-all hover:scale-105 hover:shadow-lg hover:from-green-500 hover:to-blue-500" @onclick="GenerateAsync">Oluştur</button>
+            </div>
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(generatedContent))
+    {
+        <div class="card bg-gray-800 shadow-xl border border-blue-500/30">
+            <div class="card-body flex flex-col items-center">
+                <h2 class="card-title mb-4 text-green-400">Oluşturulan Sonuç</h2>
+                <div class="bg-gray-700 p-4 rounded-lg min-h-[100px] w-full max-w-prose overflow-wrap-break-word border border-blue-500/50 flex justify-center items-center">
+                    <pre><code class="text-gray-200 whitespace-pre-wrap text-center">
+                            @generatedContent
+                            </code></pre>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (isLoading)
+{
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-xl border border-green-500/30">
+            <div class="flex flex-col items-center">
+                <div class="loading loading-spinner loading-lg text-blue-400"></div>
+                <p class="mt-4 text-lg font-semibold text-green-400">Cevap bekleniyor...</p>
+            </div>
+        </div>
+    </div>
+}
+
+@code
+{
+    private bool isLoading = false;
+
+    private string prompt = string.Empty;
+    private string generatedContent = string.Empty;
+
+    private async Task GenerateAsync()
+    {
+        isLoading = true;
+
+        try
+        {
+            var completionResult = await OpenAiService.ChatCompletion.CreateCompletion(new ChatCompletionCreateRequest
+                {
+                    Messages = new List<ChatMessage>
+                {
+                    ChatMessage.FromSystem("Sen şiir ve şarkı sözü yazmakta usta bir asistansın. Görevin, kullanıcıya şiir ve şarkı sözleri yazmakta yol göstermek, yardımcı olmak ve çözüm üretmektir."),
+                    ChatMessage.FromUser(prompt),
+                },
+                    Model = Models.Gpt_4o,
+                    MaxTokens = 4096,
+                });
+            if (completionResult.Successful)
+            {
+                generatedContent = completionResult.Choices.First().Message.Content;
+                Console.WriteLine(completionResult.Choices.First().Message.Content);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+            throw;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

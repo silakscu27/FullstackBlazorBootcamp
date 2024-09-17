@@ -1,0 +1,14 @@
+﻿@page "/"
+
+@inject NavigationManager Navigation
+
+<div class="flex min-h-dvh group">
+    <div role="button" @onclick="@(() => Navigation.NavigateTo("/chatgpt"))"
+         class="w-1/2 flex items-center justify-center transition-all duration-300 ease-out hover:scale-95 bg-gradient-to-br from-green-500 to-blue-500 group-hover:blur-sm hover:!blur-none">
+        <h2 class="text-3xl font-bold text-white">ChatGPT 🤖</h2>
+    </div>
+    <div role="button" @onclick="@(() => Navigation.NavigateTo("/dall-e"))"
+         class="w-1/2 flex items-center justify-center transition-all duration-300 ease-out hover:scale-95 bg-gradient-to-br from-purple-500 to-blue-500 group-hover:blur-sm hover:!blur-none">
+        <h2 class="text-3xl font-bold text-white">Dall-E 🖼️</h2>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+﻿@page "/dall-e"
+
+@using OpenAI.Interfaces
+@using OpenAI.ObjectModels
+@using OpenAI.ObjectModels.RequestModels
+@using System.ComponentModel.DataAnnotations
+
+@inject IJSRuntime JSRuntime
+@inject IOpenAIService openAiService
+
+<div class="container mx-auto p-4 max-w-3xl">
+    <div class="card bg-gray-800 shadow-xl mb-8 border border-purple-500/30">
+        <EditForm Model="formModel" OnValidSubmit="@HandleGenerateClick" novalidate>
+            <DataAnnotationsValidator />
+            <div class="card-body">
+                <h2 class="card-title mb-4 text-center text-blue-400 w-full">Lütfen Oluşturmak İstediğiniz Resim Detaylarını Girin</h2>
+                <InputTextArea @bind-Value="formModel.Prompt"
+                               class="textarea bg-gray-700 border-purple-500/50 text-white w-full mb-4 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500" placeholder="İçeriği buraya girin...">
+                </InputTextArea>
+                <ValidationMessage For="@(() => formModel.Prompt)" />
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <h2 class="card-title mb-2 text-purple-400">Fotoğraf Sayısı</h2>
+                        <InputNumber @bind-Value="formModel.NumberOfImages"
+                                     type="number" class="input bg-gray-700 border-purple-500/50 text-white w-full transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500" placeholder="Enter number of images" min="1" max="10" />
+                        <ValidationMessage For="@(() => formModel.NumberOfImages)" />
+                    </div>
+                    <div>
+                        <h2 class="card-title mb-2 text-purple-400">Çözünürlük</h2>
+                        <InputSelect @bind-Value="formModel.ImageSize"
+                                     class="select bg-gray-700 border-purple-500/50 text-white w-full transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
+                            <option value="" selected="selected">Çözünürlük Seçin</option>
+                            @foreach (var size in sizes)
+                            {
+                                <option value="@size">@size</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage class="text-red-500" For="@(() => formModel.ImageSize)" />
+                    </div>
+                </div>
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn bg-gradient-to-r from-purple-600 to-blue-600 text-white btn-block transition-all hover:scale-105 hover:shadow-lg hover:from-purple-500 hover:to-blue-500" disabled="@isLoading">
+                        @if (isLoading)
+                        {
+                            <span class="loading loading-spinner loading-sm"></span>
+                        }
+                        else
+                        {
+                            <span>Oluştur</span>
+                        }
+                    </button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-xl border border-purple-500/30">
+                <div class="flex flex-col items-center">
+                    <div class="loading loading-spinner loading-lg text-blue-400"></div>
+                    <p class="mt-4 text-lg font-semibold text-purple-400">Resim oluşturuluyor...</p>
+                </div>
+            </div>
+        </div>
+    }
+    else if (imageUrls.Any())
+    {
+        <div id="generated-results" class="card bg-gray-800 shadow-xl border border-purple-500/30">
+            <div class="card-body">
+                <h2 class="card-title mb-4 text-purple-600 text-center w-full">Oluşturulan Sonuç</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var imageUrl in imageUrls)
+                    {
+                        <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 border border-blue-500/30 relative group">
+                            <img src="@imageUrl" alt="@imageUrl" class="w-full rounded-lg" />
+                            <button @onclick="() => OpenImageInNewTab(imageUrl)" class="absolute top-2 right-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+    FormModel formModel = new();
+
+    private bool isLoading = false;
+
+    private IReadOnlyList<string> sizes = ["256x256", "512x512", "1024x1024"];
+
+    private List<string> imageUrls = new List<string>();
+
+    private async Task HandleGenerateClick()
+    {
+        try
+        {
+            isLoading = true;
+
+            var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
+                {
+                    Prompt = formModel.Prompt,
+                    N = formModel.NumberOfImages,
+                    Size = formModel.ImageSize,
+                    ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Url,
+                    User = "TestUser"
+                });
+
+            if (imageResult.Successful)
+            {
+                imageUrls = imageResult.Results.Select(r => r.Url).ToList();
+            }
+            else 
+            {
+                if (imageResult.Error == null)
+                {
+                    throw new Exception("Unknown Error");
+                }
+                Console.WriteLine($"{imageResult.Error.Code}: {imageResult.Error.Message}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task OpenImageInNewTab(string imageUrl)
+    {
+        await JSRuntime.InvokeVoidAsync("open", imageUrl, "_blank");
+    }
+
+    protected class FormModel
+    {
+        [Required, MinLength(5), MaxLength(250)]
+        public string Prompt { get; set; }
+
+        [Required, Range(1, 6)]
+        public int NumberOfImages { get; set; }
+
+        [AllowedValues("256x256", "512x512", "1024x1024")]
+        public string ImageSize { get; set; }
+    }
+}
+
+@code {
+
+}
