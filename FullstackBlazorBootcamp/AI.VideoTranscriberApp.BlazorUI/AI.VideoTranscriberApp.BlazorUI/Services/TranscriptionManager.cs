@@ -4,7 +4,6 @@ using OpenAI.ObjectModels.RequestModels;
 using OpenAI.ObjectModels;
 using Xabe.FFmpeg;
 using AI.VideoTranscriberApp.BlazorUI.Client.Models;
-using AI.VideoTranscriberApp.BlazorUI.Client.Models;
 
 namespace AI.VideoTranscriberApp.BlazorUI.Services
 {
@@ -49,16 +48,6 @@ namespace AI.VideoTranscriberApp.BlazorUI.Services
             var tasks = languages.Select(language => TranslateTranscriptionAsync(transcription, language, cancellationToken));
 
             var results = await Task.WhenAll(tasks);
-
-            /*
-             *  Hakan Hocam -> 1.3 sec.
-                Fatih Bey -> 1.6 sec.
-                Birgül Hanım -> 1.2 sec.
-
-                Total: 4.1 sec.
-
-                Parallel Process Time: 1.6 sec.
-             */
 
             return results.ToList();
         }
