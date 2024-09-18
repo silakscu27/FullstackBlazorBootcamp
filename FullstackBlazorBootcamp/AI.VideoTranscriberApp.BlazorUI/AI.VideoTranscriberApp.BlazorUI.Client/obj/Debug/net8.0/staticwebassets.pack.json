@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI.Client\\obj\\Debug\\net8.0\\compressed\\azy0be0shr.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI.Client\\wwwroot\\appsettings.Development.json",
+      "PackagePath": "staticwebassets\\appsettings.Development.json"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI.Client\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AI.VideoTranscriberApp.BlazorUI.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AI.VideoTranscriberApp.BlazorUI.Client.props",
+      "PackagePath": "build\\AI.VideoTranscriberApp.BlazorUI.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AI.VideoTranscriberApp.BlazorUI.Client.props",
+      "PackagePath": "buildMultiTargeting\\AI.VideoTranscriberApp.BlazorUI.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AI.VideoTranscriberApp.BlazorUI.Client.props",
+      "PackagePath": "buildTransitive\\AI.VideoTranscriberApp.BlazorUI.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
