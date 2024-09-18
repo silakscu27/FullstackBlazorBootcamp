@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AI.VideoTranscriberApp.BlazorUI.bundle.scp.css",
+      "PackagePath": "staticwebassets\\AI.VideoTranscriberApp.BlazorUI.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Sıla\\OneDrive\\Belgeler\\c# dersleri\\FullstackBlazorBootcamp\\AI.VideoTranscriberApp.BlazorUI\\AI.VideoTranscriberApp.BlazorUI\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AI.VideoTranscriberApp.BlazorUI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AI.VideoTranscriberApp.BlazorUI.props",
+      "PackagePath": "build\\AI.VideoTranscriberApp.BlazorUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AI.VideoTranscriberApp.BlazorUI.props",
+      "PackagePath": "buildMultiTargeting\\AI.VideoTranscriberApp.BlazorUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AI.VideoTranscriberApp.BlazorUI.props",
+      "PackagePath": "buildTransitive\\AI.VideoTranscriberApp.BlazorUI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
